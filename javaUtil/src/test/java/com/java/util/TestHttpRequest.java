@@ -1,5 +1,6 @@
 package com.java.util;
 
+import org.junit.Ignore;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
@@ -19,6 +20,7 @@ public class TestHttpRequest {
 	public void afterTest() {
 	}
 
+	@Ignore
 	@Test
 	public void testHttpRequest() {
 		String header = "http://zs.accp-teem.com.cn/";

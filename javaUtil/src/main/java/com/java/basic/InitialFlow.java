@@ -1,7 +1,5 @@
 package com.java.basic;
 
-import java.awt.peer.SystemTrayPeer;
-
 /**
  * 根据运行结果可以看出，初始化顺序是:
  * 1、父类静态成员变量和静态初始化块，按在代码中出现的先后顺序
