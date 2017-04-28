@@ -1,4 +1,4 @@
-package com.java.basic;
+package com.java.basic.polymorphism;
 
 /**
  * Created by chad on 2017/4/8.
