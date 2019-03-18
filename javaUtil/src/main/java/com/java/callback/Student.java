@@ -14,8 +14,11 @@ public class Student {
         this.name = name;
     }
 
-    public class doHomeWork implements DoJob {
+    public void callHelp(int a, int b) {
+        new SuperCalculator().add(a, b, new doHomeWork());
+    }
 
+    public class doHomeWork implements DoJob {
         @Override
         public void fillBlank(int a, int b, int result) {
             System.out.println(name + "求助小红计算:" + a + " + " + b + " = " + result);
@@ -23,7 +26,4 @@ public class Student {
 
     }
 
-    public void callHelp(int a, int b) {
-        new SuperCalculator().add(a, b, new doHomeWork());
-    }
 }

@@ -1,6 +1,7 @@
 package com.java.util.log;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class MyLogger {
 	private Logger logger;
@@ -14,6 +15,7 @@ public class MyLogger {
 	}
 
 	public static MyLogger getLogger(Class<?> clazz) {
+		PropertyConfigurator.configure("./src/log4j.properties"); //当前项目路径为.
 		return new MyLogger(clazz);
 	}
 

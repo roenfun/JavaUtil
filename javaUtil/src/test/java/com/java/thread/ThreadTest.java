@@ -10,6 +10,10 @@ import java.util.concurrent.FutureTask;
 public class ThreadTest {
 
     public static void main(String[] args) {
+        /**run()方法只是调用了Thread实例的run()方法而已，它仍然运行在主线程上，而start()方法会开辟一个新的线程，
+         在新的线程上调用run()方法，此时它运行在新的线程上。
+         */
+
         //------------1, thread------------
         for (int i = 0; i < 100; i++) {
             System.out.println("Main thread: " + Thread.currentThread().getName() + " " + i);

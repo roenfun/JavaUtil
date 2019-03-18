@@ -1,84 +1,17 @@
 package com.java.util.file;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import com.java.util.log.MyLogger;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FileUtil {
 	private static final MyLogger myLogger = MyLogger.getLogger(FileUtil.class);
 
-	public static boolean createDirectory(String folderName) {
-		File folder = new File(folderName);
-		if (folder.exists()) {
-			myLogger.info("Error！>> The directory is exists, create directory "
-					+ folderName + " failed.");
-			return false;
-		}
-		if (!folderName.endsWith(File.separator)) {
-			folderName = folderName + File.separator;
-		}
-		if (folder.mkdirs()) {
-			myLogger.info("Create directory " + folderName + " success.");
-			return true;
-		} else {
-			myLogger.info("Error！>> Create directory " + folderName
-					+ " failed.");
-			return false;
-		}
-	}
-
-	public static boolean deleteEmptyDirectory(String folderName) {
-		File folder = new File(folderName);
-		if (!folder.exists()) {
-			myLogger.info("Error！>> The directory is not exists, delete directory "
-					+ folderName + " failed.");
-			return false;
-		}
-		if (folder.delete()) {
-			myLogger.info("Delete directory " + folderName + " success.");
-			return true;
-		} else {
-			myLogger.info("Error！>> Delete directory " + folderName
-					+ " failed.");
-			return false;
-		}
-	}
-
-	private static boolean deleteDirectory(File file) {
-		String filePath = file.getAbsolutePath().toString();
-		if (file.exists()) {
-			if (file.isFile()) {
-				file.delete();
-			} else if (file.isDirectory()) {
-				File files[] = file.listFiles();
-				for (int i = 0; i < files.length; i++) {
-					deleteDirectory(files[i]);
-				}
-			}
-			if (file.exists()) {
-				if (file.delete()) {
-					myLogger.info("Delete file " + filePath + " success.");
-					return true;
-				} else {
-					myLogger.info("Error！>> Delete file " + filePath
-							+ " failed.");
-					return false;
-				}
-			}
-			return true;
-		} else {
-			myLogger.info("Error！>> The directory is not exists, delete directory "
-					+ filePath + " failed.");
-			return false;
-		}
-	}
-
 	public static boolean createFile(String fileName) {
 		File file = new File(fileName);
-		if (file.exists()) {
+		if (file.exists()) {//判断文件是否存在
 			myLogger.info("Error！>> The file is exists, create file "
 					+ fileName + " failed.");
 			return false;
@@ -87,7 +20,7 @@ public class FileUtil {
 			myLogger.info("Error！>> Create file " + fileName + " failed.");
 			return false;
 		}
-		if (!file.getParentFile().exists()) {
+		if (!file.getParentFile().exists()) {//判断文件是否存在
 			myLogger.info(file.getParentFile().getAbsolutePath().toString());
 			myLogger.info("The directory is not exists. Creating the directory.");
 			if (!file.getParentFile().mkdirs()) {
@@ -216,5 +149,26 @@ public class FileUtil {
 		// String shell = "killall Charles";
 		// String shell = "open /Applications/Charles.app";
 		// FileUtils.callShell(shell);
+		File file = new File("./src/main/resource/fileTest.txt");
+		if (file.exists()){
+			myLogger.info("file exist, name is:" + file.getName());
+			myLogger.info("file exist, getAbsolutePath is:" + file.getAbsolutePath());
+			myLogger.info("file exist, isHidden is:" + file.isHidden());
+			myLogger.info("file exist, length is:" + file.length());
+			myLogger.info("file exist, getParentFile is:" + file.getParentFile());
+
+			Date date = new Date(file.lastModified());
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd/ HH:mm:ss");
+			myLogger.info("file exist, lastModified is:" + simpleDateFormat.format(date));
+		}
+
+		try {
+			boolean isCreated = file.createNewFile();
+			if (isCreated){
+                myLogger.info("create file success");
+            }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
