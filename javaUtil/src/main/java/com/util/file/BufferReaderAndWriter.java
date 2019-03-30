@@ -42,7 +42,8 @@ public class BufferReaderAndWriter {
             for (String content : contents) {
                 myLogger.info("写入这一行内容是:" + content);
                 bufferedWriter.write(content);
-                bufferedWriter.newLine();//行分隔符
+                bufferedWriter.newLine();//换行分隔符
+                bufferedWriter.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();

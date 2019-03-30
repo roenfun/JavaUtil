@@ -10,7 +10,7 @@ import java.io.IOException;
 public class FileReaderAndWriter {
     private static final MyLogger mylogger = MyLogger.getLogger(FileReaderAndWriter.class);
 
-    public void FileWriterTo(File file, String content) {
+    public void FileWriterTo(File file, String content,boolean isAppend) {
         FileWriter fileWriter = null;
 
         if (!file.exists()) {
@@ -22,7 +22,11 @@ public class FileReaderAndWriter {
         }
 
         try {
-            fileWriter = new FileWriter(file, true);
+            if (isAppend) {
+                fileWriter = new FileWriter(file, true);
+            }else {
+                fileWriter = new FileWriter(file, false);
+            }
             fileWriter.write(content + "\r\n");
         } catch (IOException e) {
             e.printStackTrace();

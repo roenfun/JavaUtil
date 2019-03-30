@@ -44,11 +44,16 @@ public class BufferStreamUtil {
         try {
             fileInputStream = new FileInputStream(file);
             bufferedInputStream = new BufferedInputStream(fileInputStream);
-
             byte[] bContent = new byte[1024];
-            int len = bufferedInputStream.read(bContent);
+            int num = 0;
+            while ((num = bufferedInputStream.read(bContent)) != -1) {
+                myLogger.info("循环信息是：\n" + new String(bContent, 0, num));
 
-            myLogger.info("文件中的信息是：" + new String(bContent, 0, len));
+            }
+
+            //另一种读取方式:
+//            int len = bufferedInputStream.read(bContent);
+//            myLogger.info("文件中的信息是：\n" + new String(bContent, 0, len));
 
         } catch (IOException e) {
             e.printStackTrace();

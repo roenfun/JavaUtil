@@ -28,7 +28,7 @@ public class FileReaderAndWriterTest {
                 switch (choice) {
                     case 1:
                         String tempStr = scanner.next();//获取输入的内容
-                        fileReaderAndWriter.FileWriterTo(file, tempStr);
+                        fileReaderAndWriter.FileWriterTo(file, tempStr, false);
                         break;
                     case 2:
                         fileReaderAndWriter.FileReaderTo(file);
