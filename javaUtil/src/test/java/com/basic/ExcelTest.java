@@ -7,7 +7,7 @@ import com.util.log.MyLogger;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
