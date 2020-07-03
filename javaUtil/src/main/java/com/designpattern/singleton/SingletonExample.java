@@ -24,7 +24,8 @@ public class SingletonExample {
         return singletonExample;
     }
 
-    public void disp()
+    public void
+    disp()
     {
         System.out.println("disp() method called, disp被调用");
     }
